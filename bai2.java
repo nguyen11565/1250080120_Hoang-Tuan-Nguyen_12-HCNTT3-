@@ -16,9 +16,10 @@ import java.util.Scanner;
          this.mau=mau;
      }
      public Phanso(int tu,int mau){
-         int(mau==0){
+         if (mau == 0){
          System.out.println("mau so > 0.Dat mac dinh 1");
          this.mau=1;
+     }
      }
       public Phanso(Phanso p){
           this.tu=p.tu;
@@ -27,82 +28,84 @@ import java.util.Scanner;
       public void nhapPhanso(){
           Scanner scanner=new Scanner(System.in);  
          System.out.println("nhap tu so");
-         tu=scanner.nextInt();
+         this.tu=scanner.nextInt();
          do{
              System.out.println("nhap vao mau");
-             mau=scanner.nextInt();
+            this.mau=scanner.nextInt();
+         }while  (this.mau==0);
+         
          }
-         public void xuat() {
-        System.out.println(tu  + mau);
+         public void xuatPhanso() {
+        System.out.println(tu+"/" + mau);
     }
-private int USCLN(int a, int b) {
+private int uocsochunglonnhat(int a, int b) {
         if (b == 0) {
             return a;
         }
-        return USCLN(b, a % b);
+        return uocsochunglonnhat(b, a % b);
     }
 public void rutgon() {
-        int uscln = USCLN(tu, mau);
-        tu /= uscln;
-        mau /= uscln;
+        int uocsochunglonnhat = uocsochunglonnhat(tu, mau);
+        tu /= uocsochunglonnhat;
+        mau /= uocsochunglonnhat;
     }
 
-public phanso cong(phanso p) {
+public Phanso cong(Phanso p) {
         int tusomoi = this.tu * p.mau + p.tu * this.mau;
         int mausomoi = this.mau * p.mau;
-        phanso kq = new phanso(tusomoi, mausomoi);
+        Phanso kq = new Phanso(tusomoi, mausomoi);
         kq.rutgon();
         return kq;
     }
 
-    public phanso tru(phanso p) {
+    public Phanso tru(Phanso p) {
         int tusomoi = this.tu * p.mau - p.tu * this.mau;
         int mausomoi = this.mau * p.mau;
-        phanso kq = new phanso(tusomoi, mausomoi);
+        Phanso kq = new Phanso(tusomoi, mausomoi);
         kq.rutgon();
         return kq;
     }
 
-   public phanso nhan(phanso p) {
+   public Phanso nhan(Phanso p) {
         int tusomoi = this.tu * p.tu;
         int mausomoi = this.mau * p.mau;
-        phanso kq = new phanso(tusomoi, mausomoi);
+        Phanso kq = new Phanso(tusomoi, mausomoi);
         kq.rutgon();
         return kq;
     }
-    public phanso chia(phanso p) {
+    public Phanso chia(Phanso p) {
         int tusomoi = this.tu * p.mau;
         int mausomoi = this.mau * p.tu;
-        phanso kq = new phanso(tusomoi, mausomoi);
+        Phanso kq = new Phanso(tusomoi, mausomoi);
         kq.rutgon();
         return kq;
     }
 }
 public class bai2 {
     public static void main(String[] args) {
-        phanso p1 = new phanso();
-        System.out.print("phan so p1 mac dinh: ");
-        p1.xuat();
-        p1.nhap();
+        Phanso p1 = new Phanso();
+        System.out.print("phan so p1 luc dau: ");
+        p1.xuatPhanso();
+        p1.nhapPhanso();
         System.out.print("Phan so p1 sau khi nhap: ");
-        p1.xuat();
-        phanso p2 = new phanso(4, 16);
+        p1.xuatPhanso();
+        Phanso p2 = new Phanso(4, 16);
         System.out.print("phan so p2: ");
-        p2.xuat();
-        phanso p3 = new phanso();
-        p3.nhap();
+        p2.xuatPhanso();
+        Phanso p3 = new Phanso();
+        p3.nhapPhanso();
         System.out.print("phan so p3: ");
-        p3.xuat();
-        phanso tong = p1.cong(p3);
+        p3.xuatPhanso();
+        Phanso tong = p1.cong(p3);
         System.out.print(" p1 + p3: ");
-        tong.xuat();
-        phanso p4 = new phanso(tong);
+        tong.xuatPhanso();
+        Phanso p4 = new Phanso(tong);
         System.out.print("phan so p4 sao chep tong: ");
-        p4.xuat();
-        phanso tich = p4.nhan(p2);
+        p4.xuatPhanso();
+        Phanso tich = p4.nhan(p2);
         System.out.print(" p4 * p2: ");
-        tich.xuat();
+        tich.xuatPhanso();
     }
 }
-}
+
 
